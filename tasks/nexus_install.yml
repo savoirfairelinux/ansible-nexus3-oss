@@ -70,10 +70,10 @@
   lineinfile: dest="{{ nexus_installation_dir }}/nexus-latest/bin/nexus.vmoptions" regexp="^-Djava.io.tmpdir=.*" line="-Djava.io.tmpdir={{ nexus_tmp_dir }}"
 
 - name: Set NEXUS_HOME for the service user
-  lineinfile: dest="/home/{{ nexus_os_user }}/.bashrc" regexp="^export NEXUS_HOME=.*" line="export NEXUS_HOME=/opt/nexus-latest"
+  lineinfile: dest="/home/{{ nexus_os_user }}/.bashrc" regexp="^export NEXUS_HOME=.*" line="export NEXUS_HOME={{ nexus_installation_dir }}/nexus-latest"
 
 - name: Set nexus user
-  lineinfile: dest="/opt/nexus-latest/bin/nexus.rc" regexp=".*run_as_user=.*" line="run_as_user=\"{{ nexus_os_user }}\""
+  lineinfile: dest="{{ nexus_installation_dir }}/nexus-latest/bin/nexus.rc" regexp=".*run_as_user=.*" line="run_as_user=\"{{ nexus_os_user }}\""
 
 - name: Get path to default settings
   set_fact:
