@@ -71,6 +71,10 @@ nexus_https_proxy_host: "proxy.example.com"
 nexus_https_proxy_port: 8080
 nexus_https_proxy_username: ""
 nexus_https_proxy_password: ""
+nexus_proxy_exclude_hosts:
+  - "localhost"
+  - "127.*"
+  - "[::1]"
 
 nexus_config_pypi: false
 nexus_config_docker: false

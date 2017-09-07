@@ -20,3 +20,8 @@ if (parsed_args.with_https_proxy) {
         core.httpsProxy(parsed_args.https_proxy_host, parsed_args.https_proxy_port)
     }
 }
+
+if (parsed_args.with_http_proxy || parsed_args.with_https_proxy) {
+    core.nonProxyHosts()
+    core.nonProxyHosts(parsed_args.proxy_exclude_hosts as String[])
+}

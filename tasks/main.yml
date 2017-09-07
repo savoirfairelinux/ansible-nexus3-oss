@@ -159,6 +159,7 @@
       https_proxy_port: "{{ nexus_https_proxy_port }}"
       https_proxy_username: "{{ nexus_https_proxy_username }}"
       https_proxy_password: "{{ nexus_https_proxy_password }}"
+      proxy_exclude_hosts: "{{ nexus_proxy_exclude_hosts }}"
 
 - name: Configure branding capability
   include: call_script.yml
