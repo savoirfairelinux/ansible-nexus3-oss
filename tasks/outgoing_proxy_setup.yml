@@ -1,0 +1,5 @@
+---
+- include: call_script.yml
+  vars:
+    script_name: setup_outgoing_proxy
+    args: "{{ nexus_outgoing_proxy }}"
