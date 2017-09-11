@@ -257,6 +257,7 @@
     - setup_role
     - setup_privilege
     - setup_user
+    - setup_email
     - delete_repo
     - delete_blobstore
     - create_blobstore
