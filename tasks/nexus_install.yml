@@ -250,6 +250,7 @@
 - include: declare_script_each.yml
   with_items:
     - update_admin_password
+    - setup_outgoing_proxy
     - setup_ldap
     - setup_anonymous_access
     - setup_base_url

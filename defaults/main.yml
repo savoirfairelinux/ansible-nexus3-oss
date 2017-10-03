@@ -39,6 +39,25 @@ httpd_setup_enable: false
 httpd_ssl_certificate_file: 'files/nexus.vm.crt'
 httpd_ssl_certificate_key_file: 'files/nexus.vm.key'
 
+# No outgoing proxy configuration by default
+nexus_outgoing_proxy: false
+# Example to set-up proxy (only basic auth supported for now)
+# nexus_outgoing_proxy:
+#   host: 'my.proxy.local'
+#   port: 8080
+#   auth: false               # Set to true for basic auth
+#   username: 'johndoe'       # Used only if auth is true
+#   password: 'letmethrough'  # Used only if auth is true
+#   https_enabled: false      # Set to true for https proxy and see below https_* vars
+#   https_host: 'myhttps.proxy.local'
+#   https_port: 8080
+#   https_auth: false
+#   https_username: 'johndoe'
+#   https_password: 'letmethrough
+#   non_proxy_hosts:          # set to [] for none
+#     - localhost
+#     - *.internal.com
+
 ldap_connections: []
 # example ldap config :
 #  - ldap_name: 'My Company LDAP' # used as a key to update the ldap config

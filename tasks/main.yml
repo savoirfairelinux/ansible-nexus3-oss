@@ -9,6 +9,8 @@
 
 - include: admin_password_setup.yml
 
+- include: outgoing_proxy_setup.yml
+
 - name: Deleting default repositories
   include: delete_repo_each.yml
   with_items:
