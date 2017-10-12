@@ -250,7 +250,7 @@
   when: nexus_data_dir_contents.stdout != ""
   no_log: true
 
-- include: declare_script_each.yml
+- include_tasks: declare_script_each.yml
   with_items:
     - update_admin_password
     - setup_ldap
