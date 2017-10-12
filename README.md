@@ -6,6 +6,7 @@ All configuration can be updated by re-running the role, except for the [blobsto
 
 ## Requirements
 
+- Ansible 2.4 or later
 - This has only been tested on CentOS 7 + Ubuntu 16.04 (Xenial)
 - Oracle Java 8 (mandatory)
 - Apache HTTPD (optional, used to setup a SSL reverse-proxy)
