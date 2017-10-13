@@ -11,7 +11,7 @@ authentication = parsed_args.remote_username == null ? null : [
 
 configuration = new Configuration(
         repositoryName: parsed_args.name,
-        recipeName: 'npm-proxy',
+        recipeName: 'nuget-proxy',
         online: true,
         attributes: [
                 proxy  : [
