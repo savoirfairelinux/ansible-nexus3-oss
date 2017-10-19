@@ -183,7 +183,7 @@
 
 - name: Configure mail server
   include: setup_mail.yml   
-  #when nexus_mail_host is defined
+  when nexus_mail_host is defined
 
 - include: call_script.yml
   vars:
