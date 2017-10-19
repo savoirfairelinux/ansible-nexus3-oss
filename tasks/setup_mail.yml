@@ -1,0 +1,12 @@
+---
+- name: Calling Groovy script {{ script_name }}
+  uri:
+    url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}service/extdirect"
+    user: 'admin'
+    password: "{{ current_nexus_admin_password }}"
+    headers:
+      Content-Type: "application/json"
+    method: POST
+    status_code: 200,204
+    force_basic_auth: yes
+    body: '{"action":"coreui_Email","method":"update","data":[{"enabled":true,"host":"localhost","port":25,"username":"","password":"","fromAddress":"nexus-no-reply@fr.imshealth.com","subjectPrefix":"[NEXUS] ","startTlsEnabled":false,"startTlsRequired":false,"sslOnConnectEnabled":false,"sslCheckServerIdentityEnabled":false,"nexusTrustStoreEnabled":false}],"type":"rpc","tid":13}'
