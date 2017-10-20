@@ -24,7 +24,7 @@
         startTlsEnabled: false
         startTlsRequired: false 
         sslOnConnectEnabled: false
-        sslCheckServerIdentityEnabled :false
-        nexusTrustStoreEnabled :false
-      type :"rpc"
+        sslCheckServerIdentityEnabled: false
+        nexusTrustStoreEnabled: false
+      type: "rpc"
       tid: 13'
