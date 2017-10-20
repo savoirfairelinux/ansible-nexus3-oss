@@ -27,4 +27,4 @@
         sslCheckServerIdentityEnabled: false
         nexusTrustStoreEnabled: false
       type: "rpc"
-      tid: 13'
+      tid: 13
