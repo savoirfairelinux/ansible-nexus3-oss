@@ -4,9 +4,27 @@
     url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}service/extdirect"
     user: 'admin'
     password: "{{ current_nexus_admin_password }}"
+    body_format: json
     headers:
       Content-Type: "application/json"
     method: POST
     status_code: 200,204
     force_basic_auth: yes
-    body: '{"action":"coreui_Email","method":"update","data":[{"enabled":true,"host":"{{ nexus_mail_host}}","port":"{{ nexus_mail_port }}","username":"","password":"","fromAddress":"{{ nexus_mail_from }}","subjectPrefix":"{{ nexus_mail_subject_prefix }}","startTlsEnabled":false,"startTlsRequired":false,"sslOnConnectEnabled":false,"sslCheckServerIdentityEnabled":false,"nexusTrustStoreEnabled":false}],"type":"rpc","tid":13}'
+    body: 
+      action: "coreui_Email"
+      method: "update"
+      data : 
+        enabled: true
+        host: "{{ nexus_mail_host}}"
+        port: "{{ nexus_mail_port }}"
+        username: ""
+        password: ""
+        fromAddress: "{{ nexus_mail_from }}"
+        subjectPrefix: "{{ nexus_mail_subject_prefix }}"
+        startTlsEnabled: false
+        startTlsRequired: false 
+        sslOnConnectEnabled: false
+        sslCheckServerIdentityEnabled :false
+        nexusTrustStoreEnabled :false
+      type :"rpc"
+      tid: 13'
