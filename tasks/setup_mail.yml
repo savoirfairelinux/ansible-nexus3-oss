@@ -1,5 +1,5 @@
 ---
-- name: Calling Groovy script {{ script_name }}
+- name: Running setup_mail.yml
   uri:
     url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}service/extdirect"
     user: 'admin'
