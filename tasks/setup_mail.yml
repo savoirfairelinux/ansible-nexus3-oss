@@ -13,7 +13,7 @@
     body: 
       action: "coreui_Email"
       method: "update"
-      data : 
+      data:  
         enabled: true
         host: "{{ nexus_mail_host}}"
         port: "{{ nexus_mail_port }}"
