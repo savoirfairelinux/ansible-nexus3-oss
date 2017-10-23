@@ -277,6 +277,12 @@ see `defaults/main.yml` for these options:
 
 These are all false unless you override them from playbook / group_var / cli, these all utilize the same mechanism as maven.
 
+the variable ```nexus_mail_host``` is used to configure the mail server. If empty, the mail server is left disabled.
+Others variables are : 
+``` nexus_mail_port, nexus_mail_from, nexus_mail_subject_prefix, nexus_mail_username, nexus_mail_password, nexus_mail_start_tls_enabled, nexus_mail_start_tls_required, nexus_mail_ssl_on_connect_enabled, nexus_mail_ssl_check_server_identity_enabled, nexus_mail_trust_store_enabled ```
+
+	
+
 ## Dependencies
 
 This role requires Ansible 2.1 or higher.
