@@ -180,3 +180,15 @@
 
 - include: create_task_each.yml
   with_items: "{{ nexus_scheduled_tasks }}"
+
+- name: Configure mail server
+  include: setup_mail.yml   
+  when: nexus_mail_host is defined
+
+- include: call_script.yml
+  vars:
+    script_name: add_ldapuser_role
+    args:
+      ldap_id: "{{ nexus_ldap_id }}"
+      role: "{{ nexus_role }}"
+      usernames: "{{ nexus_ldapadmin_username }}"

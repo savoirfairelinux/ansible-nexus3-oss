@@ -1,0 +1,13 @@
+---
+- name: Running setup_mail.yml
+  uri:
+    url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}service/extdirect"
+    user: 'admin'
+    password: "{{ current_nexus_admin_password }}"
+    body_format: json
+    headers:
+      Content-Type: "application/json"
+    method: POST
+    status_code: 200,204
+    force_basic_auth: yes
+    body: {"action":"coreui_Email","method":"update","data":[{"enabled":true,"host":"{{ nexus_mail_host }}","port": "{{ nexus_mail_port }}","username":"{{ nexus_mail_username }}","password":"{{ nexus_mail_password }}","fromAddress":"{{ nexus_mail_from }}","subjectPrefix":"{{ nexus_mail_subject_prefix}}" ,"startTlsEnabled":"{{ nexus_mail_start_tls_enabled }}","startTlsRequired":"{{ nexus_mail_start_tls_required }}","sslOnConnectEnabled":"{{ nexus_mail_ssl_on_connect_enabled }}","sslCheckServerIdentityEnabled":"{{ nexus_mail_ssl_check_server_identity_enabled }}","nexusTrustStoreEnabled":"{{ nexus_mail_trust_store_enabled }}"}],"type":"rpc","tid":12}

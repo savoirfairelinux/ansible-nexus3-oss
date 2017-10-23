@@ -350,3 +350,16 @@ _nexus_repos_gitlfs_defaults:
 nexus_repos_gitlfs_hosted:
   - name: gitlfs-internal
     blob_store: "{{ nexus_blob_names.gitlfs.blob }}"
+
+nexus_mail_host: "localhost"
+nexus_mail_port: 25
+nexus_mail_from: "nexus-no-reply@localhost"
+nexus_mail_subject_prefix: "[NEXUS]"
+nexus_mail_username: "" 
+nexus_mail_password: ""
+nexus_mail_start_tls_enabled: false
+nexus_mail_start_tls_required: false
+nexus_mail_ssl_on_connect_enabled: false
+nexus_mail_ssl_check_server_identity_enabled: false
+nexus_mail_trust_store_enabled: false
+
