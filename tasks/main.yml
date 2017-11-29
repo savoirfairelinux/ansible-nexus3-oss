@@ -1,4 +1,10 @@
 ---
+
+- name: Check if SystemD service is installed
+  stat:
+    path: /etc/systemd/system/nexus.service
+  register: nexus_systemd_service_file
+
 - include: nexus_purge.yml
   when: ((purge is defined) and (purge | bool))
 
@@ -165,6 +171,16 @@
       https_proxy_username: "{{ nexus_https_proxy_username }}"
       https_proxy_password: "{{ nexus_https_proxy_password }}"
       proxy_exclude_hosts: "{{ nexus_proxy_exclude_hosts }}"
+
+- include: call_script.yml
+  vars:
+    script_name: setup_realms
+    args:
+      nuget_api_key_realm: "{{ nexus_nuget_api_key_realm }}"
+      npm_bearer_token_realm: "{{ nexus_npm_bearer_token_realm }}"
+      rut_auth_realm: "{{ nexus_rut_auth_realm }}"
+      ldap_realm: "{{ nexus_ldap_realm }}"
+      docker_bearer_token_realm: "{{ nexus_docker_bearer_token_realm }}"
 
 - name: Configure branding capability
   include: call_script.yml

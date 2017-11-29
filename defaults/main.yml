@@ -33,6 +33,13 @@ nexus_anonymous_access: false
 
 public_hostname: 'nexus.vm'
 
+# security realms
+nexus_nuget_api_key_realm: false
+nexus_npm_bearer_token_realm: false
+nexus_rut_auth_realm: false
+nexus_ldap_realm: false
+nexus_docker_bearer_token_realm: false
+
 nexus_branding_header: ""
 nexus_branding_footer: "Last provisionned {{ ansible_date_time.iso8601 }}"
 
@@ -249,6 +256,7 @@ nexus_repos_raw_group:
 # Docker support
 _nexus_repos_docker_defaults:
   blob_store: "{{ nexus_blob_names.docker.blob }}"
+  force_basic_auth: true
   strict_content_validation: true
   version_policy: release # release, snapshot or mixed
   layout_policy: strict # strict or permissive
