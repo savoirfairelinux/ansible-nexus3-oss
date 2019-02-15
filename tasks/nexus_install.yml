@@ -287,6 +287,9 @@
     - create_repo_npm_group
     - create_repo_gitlfs_hosted
     - create_task
+    - create_repo_yum_proxy
+    - create_repo_yum_hosted
+    - create_repo_yum_group
 
 - name: "Config nexus-backup shell cron"
   cron:

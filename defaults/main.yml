@@ -138,6 +138,8 @@ nexus_blob_names:           # Splited blob name list @ blob_vars.yml
     blob: 'default'
   gitlfs:
     blob: 'default'
+  yum:
+    blob: 'default'
 
 
 nexus_blobstores: []
@@ -194,6 +196,13 @@ _nexus_privilege_defaults:
 
 _nexus_repos_maven_defaults:
   blob_store: "{{ nexus_blob_names.mvn.blob }}"
+  strict_content_validation: true
+  version_policy: release # release, snapshot or mixed
+  layout_policy: strict # strict or permissive
+  write_policy: allow_once # allow_once or allow
+
+_nexus_repos_maven_defaults:
+  blob_store: "{{ nexus_blob_names.yum.blob }}"
   strict_content_validation: true
   version_policy: release # release, snapshot or mixed
   layout_policy: strict # strict or permissive
