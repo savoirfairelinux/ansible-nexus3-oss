@@ -138,6 +138,17 @@
   with_items: "{{ nexus_repos_gitlfs_hosted }}"
   when: nexus_config_gitlfs
 
+- block:
+  - include: create_repo_yum_proxy_each.yml
+    with_items: "{{ nexus_repos_yum_proxy }}"
+
+  - include: create_repo_yum_hosted_each.yml
+    with_items: "{{ nexus_repos_yum_hosted }}"
+
+  - include: create_repo_yum_group_each.yml
+    with_items: "{{ nexus_repos_yum_group }}"
+  when: nexus_config_yum
+
 - include: call_script.yml
   vars:
     script_name: setup_anonymous_access

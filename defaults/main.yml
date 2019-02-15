@@ -85,6 +85,7 @@ nexus_config_rubygems: false
 nexus_config_bower: false
 nexus_config_npm: false
 nexus_config_gitlfs: false
+nexus_config_yum: false
 
 # also see _nexus_privilege_defaults below
 nexus_privileges:
@@ -172,6 +173,9 @@ nexus_repos_maven_group:
       - central
       - jboss
 
+nexus_repos_yum_proxy: []
+nexus_repos_yum_hosted: []
+nexus_repos_yum_group: []
 
 nexus_scheduled_tasks:
   - name: db-backup # Note: CRON must be aligned to nexus-blob-backup.sh cron schedule. -> Task: "Config nexus-backup shell cron"
@@ -349,6 +353,12 @@ nexus_repos_npm_proxy:
   - name: npm-proxy
     blob_store: "{{ nexus_blob_names.npm.blob }}"
     remote_url: https://registry.npmjs.org
+
+_nexus_repos_yum_defaults:
+  blob_store: "{{ nexus_blob_names.npm.blob }}"
+  strict_content_validation: true
+  write_policy: allow_once # allow_once or allow
+
 
 # gitlfs support
 _nexus_repos_gitlfs_defaults:
