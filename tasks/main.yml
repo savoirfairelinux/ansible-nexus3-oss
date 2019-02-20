@@ -149,6 +149,11 @@
     with_items: "{{ nexus_repos_yum_group }}"
   when: nexus_config_yum
 
+- block:
+  - include: create_repo_apt_proxy_each.yml
+    with_items: "{{ nexus_repos_apt_proxy }}"
+  when: nexus_config_apt
+
 - include: call_script.yml
   vars:
     script_name: setup_anonymous_access
