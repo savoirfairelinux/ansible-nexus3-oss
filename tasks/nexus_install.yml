@@ -290,6 +290,7 @@
     - create_repo_yum_proxy
     - create_repo_yum_hosted
     - create_repo_yum_group
+    - create_repo_apt_proxy
 
 - name: "Config nexus-backup shell cron"
   cron:
