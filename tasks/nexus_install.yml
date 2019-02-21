@@ -201,8 +201,6 @@
     state: touch
   when: nexus_latest_version.changed and nexus_data_dir_contents.stdout != ""
 
-- name: Restore Nexus DB from backup
- 
 - name: Reload systemd service configuration
   shell: 'systemctl daemon-reload'
 
