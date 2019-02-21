@@ -32,7 +32,7 @@ if (existingRepository != null) {
             attributes: [
                     apt: [
                             distribution: parsed_args.distribution,
-                            flat: parsed_args.('flat', false) 
+                            flat: parsed_args.get('flat', false) 
                     ],
                     proxy  : [
                             remoteUrl: parsed_args.remote_url,
