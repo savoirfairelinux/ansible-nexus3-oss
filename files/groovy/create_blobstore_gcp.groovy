@@ -13,7 +13,7 @@ if ( existingBlobstore != null) {
     blobStoreManager.update(newConfig)
 } else {
     def blobStoreManager = container.lookup(BlobStoreManager.class.name)
-    blobStoreManager.create(new BlobStoreConfiguration(name: parsed_args.name.toString(), type: 'Google Cloud Storage',
+    blobStoreManager.create(new BlobStoreConfiguration(name: parsed_args.name, type: 'Google Cloud Storage',
     attributes: [
         'google cloud storage': [
             bucket: parsed_args.bucket,
