@@ -55,6 +55,10 @@
   with_items: "{{ nexus_blobstores }}"
   when: nexus_restore_point is undefined
 
+- include: create_blobstore_gcp_each.yml
+  with_items: "{{ nexus_blobstores_gcp }}"
+  when: nexus_restore_point is undefined
+
 - name: "Restore nexus backup"
   include: nexus-restore.yml
   when: nexus_restore_point is defined

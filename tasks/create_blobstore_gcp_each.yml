@@ -1,0 +1,6 @@
+---
+
+- include: call_script.yml
+  vars:
+    script_name: create_blobstore_gcp
+    args: "{{ item }}"
