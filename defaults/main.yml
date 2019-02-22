@@ -207,13 +207,6 @@ _nexus_repos_maven_defaults:
   layout_policy: strict # strict or permissive
   write_policy: allow_once # allow_once or allow
 
-_nexus_repos_maven_defaults:
-  blob_store: "{{ nexus_blob_names.yum.blob }}"
-  strict_content_validation: true
-  version_policy: release # release, snapshot or mixed
-  layout_policy: strict # strict or permissive
-  write_policy: allow_once # allow_once or allow
-
 # pypi support ...
 _nexus_repos_pypi_defaults:
   blob_store: "{{ nexus_blob_names.pypi.blob }}"
