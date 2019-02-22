@@ -1,5 +1,8 @@
+import groovy.json.JsonSlurper
 import org.sonatype.nexus.blobstore.api.BlobStoreConfiguration
 import org.sonatype.nexus.blobstore.api.BlobStoreManager
+
+parsed_args = new JsonSlurper().parseText(args)
 
 existingBlobstore = BlobStoreManager.get(parsed_args.name)
 
