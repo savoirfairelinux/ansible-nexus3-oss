@@ -4,14 +4,14 @@ import org.sonatype.nexus.blobstore.api.BlobStoreManager
 
 parsed_args = new JsonSlurper().parseText(args)
 
-existingBlobstore = BlobStoreManager.get(parsed_args.name)
+//existingBlobstore = BlobStoreManager.get(parsed_args.name)
 
-if ( existingBlobstore != null) {
-    newConfig = existingBlobstore.configuration.copy()
-    newConfig.attributes['google cloud storage']['credentials'] = parsed_args.credentials
-
-    blobStoreManager.update(newConfig)
-} else {
+//if ( existingBlobstore != null) {
+//    newConfig = existingBlobstore.configuration.copy()
+//    newConfig.attributes['google cloud storage']['credentials'] = parsed_args.credentials
+//
+//    blobStoreManager.update(newConfig)
+//} else {
     def blobStoreManager = container.lookup(BlobStoreManager.class.name)
     blobStoreManager.create(new BlobStoreConfiguration(name: parsed_args.name, type: 'Google Cloud Storage',
     attributes: [
@@ -20,5 +20,5 @@ if ( existingBlobstore != null) {
             credentials: parsed_args.credentials
         ]
     ]))
-}
+//}
 
