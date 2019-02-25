@@ -213,6 +213,14 @@ Delete the default blobstore from the nexus install initial default configuratio
 
 [Blobstores](https://books.sonatype.com/nexus-book/3.0/reference/admin.html#admin-repository-blobstores) to create. A blobstore path and a repository blobstore cannot be updated after initial creation (any update here will be ignored on re-provisionning).
 
+    nexus_blobstores_gcp: []
+    # example Google Bucket backed blobstore item:
+    #   - name: "gcp_blobstore"
+    #     bucket: "my-gcp-bucket-name"
+    #     credentials: "/opt/nexus-latest/system/gcloud-nexus-key.json"
+
+Google Cloud Platform storage bucket backed blobstore to create. Note that this requires installation of the GCP Blobstore Nexus plugin before it can be created. If you have an Ansible role to do this you can install it prior to blobstore creation by including the role in the nexus_plugins_installation_roles list.
+
     nexus_scheduled_tasks: []
     #  example task to compact blobstore :
     #  - name: compact-blobstore
@@ -264,7 +272,7 @@ All three repository types are combined with the following default values :
       write_policy: allow_once # allow_once or allow
 ```
 
-Docker, Pypi, Raw, Rubygems, Bower, NPM, and Git-LFS repository types:
+Docker, Pypi, Raw, Rubygems, Bower, NPM, Git-LFS, YUM and APT repository types:
 see `defaults/main.yml` for these options:
 
       nexus_config_pypi: false
@@ -274,8 +282,12 @@ see `defaults/main.yml` for these options:
       nexus_config_bower: false
       nexus_config_npm: false
       nexus_config_gitlfs: false
+      nexus_config_yum: false
+      nexus_config_apt: false
 
-These are all false unless you override them from playbook / group_var / cli, these all utilize the same mechanism as maven.
+These are all false unless you override them from playbook / group_var / cli, these all utilize the same mechanism as maven. 
+
+NOTE: APT repositories require the installation of the APT repository Nexus plugin, see the Plugins section towards the end of this document.
 
 ## Dependencies
 
@@ -392,6 +404,21 @@ The java and httpd requirements /can/ be fulfilled with the following galaxy rol
     - role: savoirfairelinux.nexus3-oss
 
 ```
+
+Plugins
+-------
+
+Nexus plugins can be installed as part of the Nexus installation using this role by adding them into the nexus_plugins_installation_roles list. This requires that you have added Ansible roles to do the installation of the plugins. These plugins will be installed after the base Nexus installation, before the creation of blobstores, repositories, etc.
+
+    nexus_plugins_installation_roles:
+      - "nexus-repository-apt"
+      - "nexus-blobstore-google-cloud"
+
+For the Google Cloud Platform Nexus Blobstore Nexus plugin see
+https://github.com/sonatype-nexus-community/nexus-blobstore-google-cloud
+
+For the APT repository plugin see
+https://github.com/sonatype-nexus-community/nexus-repository-apt
 
 License
 -------
