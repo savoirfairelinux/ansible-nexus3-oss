@@ -4,6 +4,9 @@
 
 - include: nexus_install.yml
 
+- include: nexus_plugins.yml
+  when: nexus_plugins_installation_roles is defined
+
 - include: httpd_reverse_proxy_config.yml
   when: httpd_setup_enable
 

@@ -1,0 +1,11 @@
+---
+
+#This set of tasks is intended to call a set of roles to install various nexus
+#plugins after installation of the base Nexus. This is necessary here as we may
+#want to create objects (blobstores, repos) which rely on the plugins. In my
+#own particular use case I needed to install the GCP Blobstore and APT repo plugins
+
+- include_role: "{{ nexus_plugin_role }}"
+  loop: "{{ nexus_plugins_installation_roles }}"
+  loop_control:
+    loop_var: nexus_plugin_role
