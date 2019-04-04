@@ -9,6 +9,18 @@
   - "{{ nexus_restore_log }}"
 # - "{{ nexus_backup_dir }}" # Optional
 
+- name: "{{ role_name }} | Make the restore folder"
+  file:
+    state: "directory"
+    path: "/var/nexus/restore-from-backup/"
+    owner: "nexus"
+    group: "nexus"
+  ignore_errors: true
+
+- name: "{{ role_name }} | Move backups from tmp"
+  shell: "mv /var/nexus/download-from-backup/* /var/nexus/restore-from-backup/ && chown nexus:nexus /var/nexus/restore-from-backup/*"
+  when: nexus_backup_download.rc == 0
+
 - name: "service stop"
   service:
     name: nexus
