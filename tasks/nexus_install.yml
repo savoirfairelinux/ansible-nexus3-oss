@@ -131,6 +131,27 @@
     regexp: "^-Djava.io.tmpdir=.*"
     line: "-Djava.io.tmpdir={{ nexus_tmp_dir }}"
 
+- name: Setup Nexus proxy host
+  lineinfile:
+    dest: "{{ nexus_installation_dir }}/nexus-latest/bin/nexus.vmoptions"
+    regexp: "^-Dhttp.proxyHost=.*"
+    line: "-Dhttp.proxyHost={{ nexus_http_proxy_host }}"
+  when: nexus_http_proxy_host is defined
+
+- name: Setup Nexus proxy port
+  lineinfile:
+    dest: "{{ nexus_installation_dir }}/nexus-latest/bin/nexus.vmoptions"
+    regexp: "^-Dhttp.proxyPort=.*"
+    line: "-Dhttp.proxyPort={{ nexus_http_proxy_port }}"
+  when: nexus_http_proxy_port is defined
+
+- name: Setup Nexus proxy host excludes
+  lineinfile:
+    dest: "{{ nexus_installation_dir }}/nexus-latest/bin/nexus.vmoptions"
+    regexp: "^-Dhttp.nonProxyHosts=.*"
+    line: "-Dhttp.nonProxyHosts=\"{{ nexus_proxy_exclude_hosts | join('|') }}\""
+  when: nexus_proxy_exclude_hosts is defined
+
 - name: Set NEXUS_HOME for the service user
   lineinfile:
     dest: "/home/{{ nexus_os_user }}/.bashrc"
