@@ -6,7 +6,7 @@
     password: "{{ current_nexus_admin_password }}"
     method: GET
     force_basic_auth: yes
-    status_code: 204,404
+    status_code: 200,204,404
 
 - name: Declaring Groovy script {{ item }}
   uri:
