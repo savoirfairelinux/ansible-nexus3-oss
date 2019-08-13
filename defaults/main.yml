@@ -27,6 +27,7 @@ nexus_docker_hosted_port: 9080
 nexus_docker_proxy_port: 9081
 nexus_docker_group_port: 9082
 nexus_default_context_path: '/'
+nexus_api_url: 'service/siesta/rest/v1/script/'
 
 nexus_admin_password: 'changeme' # Note : admin password change subsequent to first-time install is *not implemented* yet
 nexus_anonymous_access: false

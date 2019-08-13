@@ -1,4 +1,9 @@
 ---
+- name: Setup api url and http method
+  set_fact:
+    nexus_api_url: 'service/rest/v1/script/'
+  when: nexus_version | match('3.17.0-01')
+
 - include: nexus_purge.yml
   when: ((purge is defined) and (purge | bool))
 
