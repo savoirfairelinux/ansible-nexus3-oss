@@ -4,7 +4,7 @@
     url: "http://localhost:{{ nexus_default_port }}{{ nexus_default_context_path }}{{ nexus_api_url }}{{ item }}"
     user: 'admin'
     password: "{{ current_nexus_admin_password }}"
-    method: POST
+    method: GET
     force_basic_auth: yes
     status_code: 204,404
 
