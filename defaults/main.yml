@@ -1,4 +1,5 @@
 ---
+nexus_download_url: "http://download.sonatype.com/nexus/3/"
 nexus_version: '3.3.1-01'
 nexus_package: "nexus-{{ nexus_version }}-unix.tar.gz"
 nexus_download_dir: '/tmp'
@@ -27,6 +28,8 @@ nexus_docker_hosted_port: 9080
 nexus_docker_proxy_port: 9081
 nexus_docker_group_port: 9082
 nexus_default_context_path: '/'
+nexus_api_url: 'service/siesta/rest/v1/script/'
+nexus_new_api_url: 'service/rest/v1/script/'
 
 nexus_admin_password: 'changeme' # Note : admin password change subsequent to first-time install is *not implemented* yet
 nexus_anonymous_access: false
