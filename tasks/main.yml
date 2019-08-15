@@ -1,8 +1,14 @@
 ---
-- name: Setup api url and http method
+- name: Determine minor version of Nexus
   set_fact:
-    nexus_api_url: 'service/rest/v1/script/'
-  when: (nexus_version | match('3.17.0-01')) or (nexus_version | match('3.18.1-01'))
+    minor_nexus_version: "{{ nexus_version | regex_search(regexp,'\\1') }}"
+  vars:
+    regexp: '3\.(\d+)\..*'
+
+- name: Set API URL
+  set_fact:
+    nexus_api_url: "{{ nexus_new_api_url }}"
+  when: minor_nexus_version >= 8
 
 - include: nexus_purge.yml
   when: ((purge is defined) and (purge | bool))
