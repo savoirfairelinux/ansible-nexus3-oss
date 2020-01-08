@@ -54,7 +54,7 @@
   include_vars: blob_vars.yml
   when: nexus_blob_split
 
- name: "Create file blobstores"
+- name: "Create file blobstores"
   include: create_blobstore_each.yml
   with_items: "{{ nexus_blobstores }}"
   when: nexus_restore_point is undefined
