@@ -271,6 +271,8 @@
   when: nexus_data_dir_contents.stdout != ""
   no_log: true
 
+- include: change_admin_password.yml
+
 - include: declare_script_each.yml
   with_items:
     - update_admin_password
