@@ -4,6 +4,8 @@
 
 - include: nexus_install.yml
 
+- include: change_admin_password.yml
+
 - include: nexus_plugins.yml
   when: nexus_plugins_installation_roles is defined
 
