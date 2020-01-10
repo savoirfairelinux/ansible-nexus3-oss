@@ -6,6 +6,7 @@ parsed_args = new JsonSlurper().parseText(args)
 existingBlobStore = blobStore.getBlobStoreManager().get(parsed_args.name)
 if (existingBlobStore == null) {
 
+    def blobStoreManager = container.lookup(BlobStoreManager.class.name)
     def config = blobStoreManager.newConfiguration()
     config.name = 'default'
     config.type = 'Google Cloud Storage'
