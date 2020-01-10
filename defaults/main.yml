@@ -180,7 +180,7 @@ nexus_repos_apt_proxy: []
 
 
 nexus_scheduled_tasks:
-  - name: db-backup # Note: CRON must be aligned to nexus-blob-backup.sh cron schedule. -> Task: "Config nexus-backup shell cron"
+  - name: db-backup 
     cron: '0 0 21 * * ?'
     typeId: db.backup
     taskProperties:

@@ -195,8 +195,9 @@
 - name: "Register scripts to be deployed"
   set_fact:
     nexus_deployed_scripts:
-      - nexus-blob-backup.sh
-      - nexus-blob-restore.sh
+#      - nexus-blob-backup.sh
+#      - nexus-blob-restore.sh
+      - nexus-db-backup.sh
 
 - name: "Deploy scripts"
   template:
@@ -318,9 +319,9 @@
 
 - name: "Config nexus-backup shell cron"
   cron:
-    name: "Backup nexus Blobstore"
-    minute: "1"
-    hour: "21"
-    job: "/sbin/nexus-blob-backup.sh 2>&1 | tee {{ nexus_backup_log }}"
+    name: "Backup nexus DB"
+    minute: "*"
+    hour: "*"
+    job: "/sbin/nexus-db-backup.sh 2>&1 | tee {{ nexus_backup_log }}"
     state: present
     user: "root"
