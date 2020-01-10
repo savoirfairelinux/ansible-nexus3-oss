@@ -8,7 +8,7 @@ if (existingBlobStore == null) {
 
     def blobStoreManager = container.lookup(BlobStoreManager.class.name)
     def config = blobStoreManager.newConfiguration()
-    config.name = 'default'
+    config.name = 'gcp'
     config.type = 'Google Cloud Storage'
     config.setAttributes(
       'google cloud storage': [
