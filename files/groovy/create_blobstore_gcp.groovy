@@ -12,7 +12,8 @@ if (existingBlobStore == null) {
     config.setAttributes(
       'google cloud storage': [
         bucket: parsed_args.bucket,
-        credential_file: parsed_args.credentials
+        credential_file: parsed_args.credentials,
+        region: parsed_args.region
       ]
     )
 
