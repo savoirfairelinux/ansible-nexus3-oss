@@ -4,6 +4,9 @@
 
 - include: nexus_install.yml
 
+- include: nexus_plugins.yml
+  when: nexus_plugins_installation_roles is defined
+
 - include: httpd_reverse_proxy_config.yml
   when: httpd_setup_enable
 
@@ -51,8 +54,14 @@
   include_vars: blob_vars.yml
   when: nexus_blob_split
 
-- include: create_blobstore_each.yml
+- name: "Create file blobstores"
+  include: create_blobstore_each.yml
   with_items: "{{ nexus_blobstores }}"
+  when: nexus_restore_point is undefined
+
+- name: "Create GCP blobstores"
+  include: create_blobstore_gcp_each.yml
+  with_items: "{{ nexus_blobstores_gcp }}"
   when: nexus_restore_point is undefined
 
 - name: "Restore nexus backup"
@@ -137,6 +146,22 @@
 - include: create_repo_gitlfs_hosted_each.yml
   with_items: "{{ nexus_repos_gitlfs_hosted }}"
   when: nexus_config_gitlfs
+
+- block:
+  - include: create_repo_yum_proxy_each.yml
+    with_items: "{{ nexus_repos_yum_proxy }}"
+
+  - include: create_repo_yum_hosted_each.yml
+    with_items: "{{ nexus_repos_yum_hosted }}"
+
+  - include: create_repo_yum_group_each.yml
+    with_items: "{{ nexus_repos_yum_group }}"
+  when: nexus_config_yum
+
+- block:
+  - include: create_repo_apt_proxy_each.yml
+    with_items: "{{ nexus_repos_apt_proxy }}"
+  when: nexus_config_apt
 
 - include: call_script.yml
   vars:
