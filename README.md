@@ -218,7 +218,6 @@ Delete the default blobstore from the nexus install initial default configuratio
     #   - name: "gcp_blobstore"
     #     bucket: "my-gcp-bucket-name"
     #     credentials: "/opt/nexus-latest/system/gcloud-nexus-key.json"
-
 Google Cloud Platform storage bucket backed blobstore to create. Note that this requires installation of the GCP Blobstore Nexus plugin before it can be created. If you have an Ansible role to do this you can install it prior to blobstore creation by including the role in the nexus_plugins_installation_roles list.
 
     nexus_scheduled_tasks: []
@@ -285,9 +284,9 @@ see `defaults/main.yml` for these options:
       nexus_config_yum: false
       nexus_config_apt: false
 
-These are all false unless you override them from playbook / group_var / cli, these all utilize the same mechanism as maven. 
-
 NOTE: APT repositories require the installation of the APT repository Nexus plugin, see the Plugins section towards the end of this document.
+
+These are all false unless you override them from playbook / group_var / cli, these all utilize the same mechanism as maven.
 
 ## Dependencies
 
@@ -407,16 +406,12 @@ The java and httpd requirements /can/ be fulfilled with the following galaxy rol
 
 Plugins
 -------
-
 Nexus plugins can be installed as part of the Nexus installation using this role by adding them into the nexus_plugins_installation_roles list. This requires that you have added Ansible roles to do the installation of the plugins. These plugins will be installed after the base Nexus installation, before the creation of blobstores, repositories, etc.
-
     nexus_plugins_installation_roles:
       - "nexus-repository-apt"
       - "nexus-blobstore-google-cloud"
-
 For the Google Cloud Platform Nexus Blobstore Nexus plugin see
 https://github.com/sonatype-nexus-community/nexus-blobstore-google-cloud
-
 For the APT repository plugin see
 https://github.com/sonatype-nexus-community/nexus-repository-apt
 

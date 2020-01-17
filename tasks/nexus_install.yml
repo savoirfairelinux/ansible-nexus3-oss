@@ -192,26 +192,6 @@
 # - name: Enable nexus service
 #   systemd: name=nexus daemon_reload=yes enabled=yes state=started
 
-- name: "Register scripts to be deployed"
-  set_fact:
-    nexus_deployed_scripts:
-      - nexus-blob-backup.sh
-      - nexus-blob-restore.sh
-
-- name: "Deploy scripts"
-  template:
-    src: "{{ item }}.j2"
-    dest: "{{ nexus_script_dir }}/{{ item }}"
-    mode: 0755
-  with_items: "{{ nexus_deployed_scripts }}"
-
-- name: "Symlink scripts to /sbin"
-  file:
-    src: "{{ nexus_script_dir }}/{{ item }}"
-    dest: "/sbin/{{ item }}"
-    state: link
-  with_items: "{{ nexus_deployed_scripts }}"
-
 - name: 'Check if data directory is empty (first-time install)'
   command: "ls {{ nexus_data_dir }}"
   register: nexus_data_dir_contents
@@ -271,6 +251,8 @@
   when: nexus_data_dir_contents.stdout != ""
   no_log: true
 
+- include: change_admin_password.yml
+
 - include: declare_script_each.yml
   with_items:
     - update_admin_password
@@ -314,11 +296,3 @@
     - create_repo_apt_proxy
     - create_blobstore_gcp
 
-- name: "Config nexus-backup shell cron"
-  cron:
-    name: "Backup nexus Blobstore"
-    minute: "1"
-    hour: "21"
-    job: "/sbin/nexus-blob-backup.sh 2>&1 | tee {{ nexus_backup_log }}"
-    state: present
-    user: "root"

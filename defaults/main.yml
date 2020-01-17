@@ -142,19 +142,12 @@ nexus_blob_names:           # Splited blob name list @ blob_vars.yml
   yum:
     blob: 'default'
 
-
 nexus_blobstores: []
 # example blobstore item :
 # - name: separate-storage
 #   path: /mnt/custom/path
 
 # also see _nexus_repos_maven_defaults below
-
-#nexus_blobstores_gcp:
-#  - name: "gcp_blobstore"
-#    bucket: "my-gcp-bucket-name"
-#    credentials: "/opt/nexus-latest/system/gcloud-nexus-key.json"
-   
 nexus_repos_maven_proxy:
   - name: central
     remote_url: 'https://repo1.maven.org/maven2/'
@@ -185,17 +178,9 @@ nexus_repos_yum_group: []
 
 nexus_repos_apt_proxy: []
 
-#Example APT repo
-#nexus_repos_apt_proxy:
-#  - name: "apt_stretch_deb_debian_org"
-#    remote_url: "http://deb.debian.org"
-#    distribution: "stretch"
-#    content_max_age: "1440"
-#    metadata_max_age: "1440"
-#    blob_store: "default"
 
 nexus_scheduled_tasks:
-  - name: db-backup # Note: CRON must be aligned to nexus-blob-backup.sh cron schedule. -> Task: "Config nexus-backup shell cron"
+  - name: db-backup 
     cron: '0 0 21 * * ?'
     typeId: db.backup
     taskProperties:
@@ -372,7 +357,6 @@ _nexus_repos_yum_defaults:
 _nexus_repos_apt_defaults:
   blob_store: "{{ nexus_blob_names.npm.blob }}"
   strict_content_validation: true
-
 
 # gitlfs support
 _nexus_repos_gitlfs_defaults:
